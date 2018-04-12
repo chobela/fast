@@ -1,0 +1,12 @@
+<?php
+	include('conn.php');
+	
+	$client=$_POST['client'];
+	$url=$_POST['url'];
+	
+	
+	mysqli_query($conn,"insert into images (client, url) values ('$client', '$url')");
+	header('location:index.php');
+
+?>
+

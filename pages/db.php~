@@ -1,0 +1,4 @@
+<?php
+$conn=mysqli_connect("localhost","root","theresa1") or die("Could not connect");
+mysqli_select_db("fast",$conn) or die("could not connect database");
+?>
