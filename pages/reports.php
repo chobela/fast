@@ -11,7 +11,8 @@
 $userID = $_GET['id'];
 $today = date("Y-m-d");
 
-$sql = "SELECT * FROM comments JOIN users ON users.id = comments.kam LEFT JOIN status ON status.id = comments.status WHERE comments.debtor_id = $userID";
+
+$sql = "SELECT *, debtors.id AS idd, debtors.name AS debtorname, clients.name AS clientname  FROM debtors Left JOIN users on users.id = debtors.kam LEFT JOIN clients ON clients.id = debtors.client LEFT JOIN comments ON comments.debtor_id = debtors.id LEFT JOIN status ON status.id = comments.status WHERE comments.id IN (SELECT MAX(id) FROM comments GROUP BY comments.debtor_id)";
  
  $result = mysqli_query($con,$sql);
  $count = mysqli_num_rows($result);
@@ -557,9 +558,9 @@ $sql = "SELECT * FROM comments JOIN users ON users.id = comments.kam LEFT JOIN s
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
+                                            <th>Client</th>
                                             <th>KAM</th>
                                             <th>Debtor</th>
-                                            <th>Acc #</th>
                                             <th>Owing</th>
                                             <th>Paid</th>
                                             <th>Balance</th>
@@ -575,7 +576,12 @@ $sql = "SELECT * FROM comments JOIN users ON users.id = comments.kam LEFT JOIN s
               while ($row = mysqli_fetch_array($result)) { $uid = $row['id'];?>
 
     <tr>
+        <td><?php echo $row['clientname'];?></td>
         <td><?php echo $row['firstname'];?></td>
+        <td><?php echo $row['debtorname'];?></td>
+        <td><?php echo $row['owing'];?></td>
+       <td><?php echo  'K' . number_format( $row['paid'],2);?></td>
+       <td><?php echo  'K' . number_format( $row['balance'],2);?></td>
 
 <?php 
 
@@ -617,7 +623,7 @@ $status = $row ['status'] ;
 
 
  	<td><?php echo $row['comment'];?></td>
-	<td><?php echo $row['contactdate'];?></td>
+	
       
   </tr>
 
@@ -633,9 +639,9 @@ $status = $row ['status'] ;
 
                                     <tfoot>
                                         <tr>
-                                           <th>KAM</th>
+                                             <th>Client</th>
+                                            <th>KAM</th>
                                             <th>Debtor</th>
-                                            <th>Acc #</th>
                                             <th>Owing</th>
                                             <th>Paid</th>
                                             <th>Balance</th>

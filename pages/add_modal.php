@@ -11,40 +11,73 @@
 				<form method="POST" action="addnew.php">
 					<div class="row">
 						<div class="col-lg-2">
-							<label class="control-label" style="position:relative; top:7px;">Income Source:</label>
+							<label class="control-label" style="position:relative; top:7px;">Company:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="income_source">
+							<input type="text" class="form-control" name="company">
 						</div>
 					</div>
 					<div style="height:10px;"></div>
 					<div class="row">
 						<div class="col-lg-2">
-							<label class="control-label" style="position:relative; top:7px;">Payment Frequency:</label>
+							<label class="control-label" style="position:relative; top:7px;">Comment:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="payment_freq">
+							<input type="text" class="form-control" name="comment">
 						</div>
 					</div>
 					<div style="height:10px;"></div>
 					<div class="row">
 						<div class="col-lg-2">
-							<label class="control-label" style="position:relative; top:7px;">Amount:</label>
+							<label class="control-label" style="position:relative; top:7px;">Contact Person:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="amount">
+							<input type="text" class="form-control" name="person">
 						</div>
 					</div>
 
 <div style="height:10px;"></div>
 					<div class="row">
 						<div class="col-lg-2">
-							<label class="control-label" style="position:relative; top:7px;">Employer:</label>
+							<label class="control-label" style="position:relative; top:7px;">Position:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="employer">
+							<input type="text" class="form-control" name="position">
 						</div>
 					</div>
+
+<div style="height:10px;"></div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label class="control-label" style="position:relative; top:7px;">Phone:</label>
+						</div>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="phone">
+						</div>
+					</div>
+
+
+<div style="height:10px;"></div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label class="control-label" style="position:relative; top:7px;">RAG:</label>
+						</div>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="rag">
+						</div>
+					</div>
+
+<div style="height:10px;"></div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label class="control-label" style="position:relative; top:7px;">Status Remarks:</label>
+						</div>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="status_remarks">
+						</div>
+					</div>
+
+
 					
                 </div> 
 				</div>

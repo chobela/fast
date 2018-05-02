@@ -11,22 +11,40 @@
 				<form method="POST" action="addnew.php">
 					<div class="row">
 						<div class="col-lg-2">
-							<label class="control-label" style="position:relative; top:7px;">Client Name:</label>
+							<label class="control-label" style="position:relative; top:7px;">Income Source:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="client">
+							<input type="text" class="form-control" name="income_source">
 						</div>
 					</div>
 					<div style="height:10px;"></div>
 					<div class="row">
 						<div class="col-lg-2">
-							<label class="control-label" style="position:relative; top:7px;">Image Url:</label>
+							<label class="control-label" style="position:relative; top:7px;">Payment Frequency:</label>
 						</div>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" name="url">
+							<input type="text" class="form-control" name="payment_freq">
 						</div>
 					</div>
-					
+					<div style="height:10px;"></div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label class="control-label" style="position:relative; top:7px;">Amount:</label>
+						</div>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="amount">
+						</div>
+					</div>
+
+<div style="height:10px;"></div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label class="control-label" style="position:relative; top:7px;">Employer:</label>
+						</div>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="employer">
+						</div>
+					</div>
 					
                 </div> 
 				</div>

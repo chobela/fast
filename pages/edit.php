@@ -1,14 +1,18 @@
 <?php
 	include('conn.php');
 	
-	$id=$_GET['debtor_id'];
+	$id=$_GET['id'];
 	
-	$income_source=$_POST['income_source'];
-	$payment_freq=$_POST['payment_freq'];
-        $amount=$_POST['amount'];
-        $employer=$_POST['employer'];
+	$company=$_POST['company'];
+        $comment=$_POST['comment'];
+	$person=$_POST['person'];
+        $position=$_POST['position'];
+        $phone=$_POST['phone'];
+        $email=$_POST['email'];
+        $rag=$_POST['rag'];
+        $status_remarks= mysqli_escape_string($conn, $_POST['status_remarks']);
 	
-	mysqli_query($conn,"update source set income_source='$income_source', payment_freq='$payment_freq', amount='$amount', employer='$employer' where debtor_id='$id'");
-	header('location:source.php');
+	mysqli_query($conn,"update development set company='$company', comment='$comment', person='$person', position='$position', phone='$phone', email='$email', rag='$rag', status_remarks='$status_remarks' where id='$id'");
+	header('location:development.php');
 
 ?>

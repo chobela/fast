@@ -519,7 +519,12 @@ $status = $roww ['status'] ;
         <td><?php echo $row['debtorname'];?></td>
  	<td><?php echo $row['clientname'];?></td>
 	<td><?php echo  'K' . number_format($row['owing'],2);?></td>
+
+
         <td><?php echo  'K' . number_format( $row['paid'],2);?></td>
+
+
+
         <td><?php echo 'K' . number_format($row['balance'],2);?></td>
 
 
@@ -575,7 +580,7 @@ $status = $row ['status'] ;
 
  <td  style="text-align:center"><a href="contacts.php?id=<?=$uid?>" class="label bg-grey">Contact Details</a></td>
  <td  style="text-align:center"><a href="comments.php?id=<?=$uid?>" class="label bg-grey">Comments</a></td>
- <td  style="text-align:center"><a href="payhistory.php?id=<?=$uid?>" class="label bg-grey">Payments</a></td>
+ <td  style="text-align:center"><a href="payhistory.php?id=<?=$uid.'&owe='.$row['owing']?>" class="label bg-grey">Payments</a></td>
  <td  style="text-align:center"><a href="ptp.php?id=<?=$uid?>" class="label bg-grey">PTP</a></td>
 
 

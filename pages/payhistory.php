@@ -11,7 +11,7 @@ session_start();
 $userID = $_GET['id'];
 $today = date("Y-m-d");
 
-$sql = "SELECT * FROM payhistory JOIN users ON payhistory.kam = users.id JOIN debtors ON payhistory.debtor_id = debtors.id LEFT JOIN paytypes ON payhistory.type = paytypes.id";
+$sql = "SELECT * FROM payhistory JOIN users ON payhistory.kam = users.id JOIN debtors ON payhistory.debtor_id = debtors.id LEFT JOIN paytypes ON payhistory.type = paytypes.id WHERE debtors.id = $userID";
  
  $result = mysqli_query($con,$sql);
  $count = mysqli_num_rows($result);
@@ -472,12 +472,13 @@ $status = $roww ['status'] ;
  <div class="form-group">
 <input type="hidden" class="form-control" name="debtor_id" id="debtor_id" value="<?php echo $userID; ?>"/>
  </div>
-
+ <div class="row clearfix">
                     <div class="form-group">
 
                         <label>Status</label>
                       
 <select name="type" class="form-control show-tick"  id="type" >
+
                               <option value="-1" selected="selected">Select...</option>
                               <?php 
 
@@ -491,13 +492,15 @@ $type = mysqli_query($con,$db);
 						 ?>
                             </select>
                     </div>
-
+</div>
 
 
 
                     <div class="form-group">
-                        <label>Ammount</label>
+  <div class="form-line">
+                        <label>Amount</label>
                         <input type="text" class="form-control" name="payment" id="payment"/>
+</div>
                     </div>
                    
                     <a href="javascript:void(0);" class="btn btn-warning" onclick="$('#addForm').slideUp();">Cancel</a>
@@ -522,8 +525,13 @@ if (isset($_POST['submitpay'])){
 
  $sqlinsert = mysqli_query ($dbcon, "INSERT INTO payhistory (kam, debtor_id, type, payment, date) VALUES ('$kam', '$debtor_id', '$type', '$payment', '$date')");
 
+  mysqli_query ($dbcon, "INSERT INTO comments (kam, debtor_id, contacted, status, comment, date, contactdate) VALUES ('$kam', '$debtor_id', '2', '1', 'payment was made', $date, $date)");
+
+
+mysqli_query ($dbcon, "UPDATE debtors set owing = owing - '$payment' WHERE id = '$userID'");
+
      
-   header('Location: payhistory.php?id=$kam');
+   header('Location: debtors.php');
     
 
 }
@@ -560,6 +568,8 @@ if (isset($_POST['submitpay'])){
 $balance = $row['owing'] - $row['payment'];
 
 echo 'K' . number_format($balance,2);?></td>
+
+
 	<td><?php echo $row['date'];?></td>
         <td><?php echo $row['type'];?></td>
   </tr>

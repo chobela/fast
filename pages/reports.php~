@@ -1,4 +1,25 @@
-﻿<!DOCTYPE html>
+﻿﻿<?php
+ session_start();
+ include("../config/config.php");
+
+ if (!isset ($_SESSION ['id']) && !isset ($_SESSION ['user_group']) && !isset ($_SESSION ['firstname'])) {
+
+ header('Location:login.php');
+
+}
+
+$userID = $_GET['id'];
+$today = date("Y-m-d");
+
+
+$sql = "SELECT *, debtors.id AS idd, debtors.name AS debtorname, clients.name AS clientname  FROM debtors Left JOIN users on users.id = debtors.kam LEFT JOIN clients ON clients.id = debtors.client LEFT JOIN comments ON comments.debtor_id = debtors.id LEFT JOIN status ON status.id = comments.status WHERE comments.id IN (SELECT MAX(id) FROM comments GROUP BY comments.debtor_id)";
+ 
+ $result = mysqli_query($con,$sql);
+ $count = mysqli_num_rows($result);
+
+?>
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -537,9 +558,9 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
+                                            <th>Client</th>
                                             <th>KAM</th>
                                             <th>Debtor</th>
-                                            <th>Acc #</th>
                                             <th>Owing</th>
                                             <th>Paid</th>
                                             <th>Balance</th>
@@ -547,11 +568,73 @@
                                             <th>Comments</th>
                                         </tr>
                                     </thead>
+
+<?php 
+
+ if ($count > 0) {
+
+              while ($row = mysqli_fetch_array($result)) { $uid = $row['id'];?>
+
+    <tr>
+        <td><?php echo $row['clientname'];?></td>
+        <td><?php echo $row['firstname'];?></td>
+        <td><?php echo $row['debtorname'];?></td>
+        <td><?php echo $row['owing'];?></td>
+       <td><?php echo  'K' . number_format( $row['paid'],2);?></td>
+       <td><?php echo  'K' . number_format( $row['balance'],2);?></td>
+
+<?php 
+
+$status = $row ['status'] ;
+
+                                if ($status == 1) {
+						$css = "bg-brown" ;
+				}
+				elseif($status == 2) {
+						$css = "label-warning" ;
+				}
+                                elseif($status == 3) {
+						$css = "label-primary" ;
+				}
+                                elseif($status == 4) {
+						$css = "bg-black" ;
+				}
+                                 elseif($status == 5) {
+						$css = "bg-purple" ;
+				}
+                                 elseif($status == 6) {
+						$css = "label-success" ;
+				}
+				
+?>
+
+           
+
+
+
+
+
+
+ 	<td><?php echo $row['comment'];?></td>
+	
+      
+  </tr>
+
+<?php } }?>
+                        
+
+
+
+
+
+
+
+
                                     <tfoot>
                                         <tr>
-                                           <th>KAM</th>
+                                             <th>Client</th>
+                                            <th>KAM</th>
                                             <th>Debtor</th>
-                                            <th>Acc #</th>
                                             <th>Owing</th>
                                             <th>Paid</th>
                                             <th>Balance</th>
